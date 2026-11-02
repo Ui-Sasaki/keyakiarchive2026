@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1039 1190">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #ce2d2d;
+      }
+
+      .cls-2 {
+        fill: #ce2d2d;
+      }
+    </style>
+  </defs>
+  <g id="_レイヤー_1-2" data-name="レイヤー 1">
+    <line class="cls-1" x1="641.5" y1="1152" x2="641.5" y2="8"/>
+    <line class="cls-1" x1="878.5" y1="1190" x2="878.5" y2="146"/>
+    <rect class="cls-2" x="50" y="758" width="80" height="27"/>
+    <rect class="cls-2" x="205" y="786" width="32" height="29"/>
+    <line class="cls-1" x1="395.5" y1="1084" x2="395.5" y2="146"/>
+    <line class="cls-1" x1="237.5" y1="975" x2="237.5" y2="75"/>
+    <line class="cls-1" x1="37.5" y1="1161" x2="37.5" y2="14"/>
+    <line class="cls-1" x1="204.5" y1="917" x2="204.5" y2="106"/>
+    <line class="cls-1" x1="808.5" y1="758" x2="808.5" y2="67"/>
+    <line class="cls-1" x1="988.5" y1="828" x2="988.5" y2="57"/>
+    <line class="cls-1" x1="916.5" y1="902" x2="916.5" y2="131"/>
+    <line class="cls-1" x1="129.5" y1="917" x2="129.5"/>
+    <line class="cls-1" x1="487.5" y1="730" x2="487.5" y2="146"/>
+    <line class="cls-1" x1="317.5" y1="917" x2="317.5" y2="391"/>
+    <line class="cls-1" x1="1039" y1="146.5" y2="146.5"/>
+    <line class="cls-1" x1="1039" y1="183.5" y2="183.5"/>
+    <rect class="cls-2" x="917" y="146" width="72" height="37"/>
+    <line class="cls-1" x1="1039" y1="815.5" y2="815.5"/>
+    <line class="cls-1" x1="1039" y1="758.5" y2="758.5"/>
+    <line class="cls-1" x1="1039" y1="785.5" y2="785.5"/>
+  </g>
+</svg>

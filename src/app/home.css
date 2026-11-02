@@ -1,0 +1,21 @@
+.information-container {
+  background:
+    radial-gradient(circle, #ffe72e 0 3px, transparent calc(3px + 1px)) 0 0 /
+      32px 32px,
+    #fff395;
+}
+
+.theme-container {
+  background:
+    radial-gradient(circle, #fff395 0 3px, transparent calc(3px + 1px)) 0 0 /
+      32px 32px,
+    white;
+}
+
+.link {
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: #0044cc;
+}
