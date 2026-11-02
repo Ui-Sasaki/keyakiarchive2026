@@ -5,6 +5,12 @@ import { TransitionLink } from "@/lib/transition";
 
 import { Metadata } from "next";
 
+export function generateStaticParams() {
+  return data.map((group) => ({
+    id: String(group.id),
+  }));
+}
+
 export async function generateMetadata(props: {
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {

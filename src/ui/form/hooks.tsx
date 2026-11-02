@@ -12,7 +12,6 @@ import {
 import toast from "react-hot-toast";
 
 import { type FormState } from "@/ui/form";
-import { useVerify } from "@/ui/form/securityVerifier/hooks";
 
 import { useRouter } from "next/navigation";
 
@@ -63,7 +62,6 @@ export const useForm = <T extends Record<string, unknown>>(
   options: FormOptions = {},
 ) => {
   const [state, dispatch] = useActionState(formAction, initialState);
-  const getVerificationCode = useVerify();
   const ref = useRef<HTMLFormElement>(null);
   const {
     shouldReset = false,
@@ -79,17 +77,13 @@ export const useForm = <T extends Record<string, unknown>>(
   }
 
   const action = useCallback(
-    async (f: FormData) => {
-      if (authenticationRequired) {
-        const verificationCode = await getVerificationCode();
-        f.append("verificationCode", verificationCode);
-      }
-      startTransition(() => {
-        dispatch(f);
-      });
-    },
-    [authenticationRequired, dispatch, getVerificationCode],
-  );
+  async (f: FormData) => {
+    startTransition(() => {
+      dispatch(f);
+    });
+  },
+  [dispatch],
+);
 
   const handleSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -14,7 +15,7 @@ const maximumDisplayTime = 2500;
 
 function loadImage(src: string) {
   return new Promise<void>((resolve) => {
-    const image = new Image();
+    const image = new window.Image();
     image.onload = () => resolve();
     image.onerror = () => resolve();
     image.src = src;
@@ -28,58 +29,87 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     let cancelled = false;
+    let finished = false;
+    let loadedImages = 0;
+
     const startedAt = performance.now();
+   const timers: number[] = [];
+
+const schedule = (callback: () => void, delay: number) => {
+  const timer = window.setTimeout(callback, delay);
+  timers.push(timer);
+};
 
     const finish = () => {
-      if (cancelled) return;
+      if (cancelled || finished) return;
+      finished = true;
 
       const elapsed = performance.now() - startedAt;
       const remaining = Math.max(0, minimumDisplayTime - elapsed);
 
-      window.setTimeout(() => {
+      schedule(() => {
         if (cancelled) return;
+
         setProgress(100);
         setIsExiting(true);
-        window.setTimeout(() => {
-          if (!cancelled) setIsVisible(false);
+
+        schedule(() => {
+          if (!cancelled) {
+            setIsVisible(false);
+          }
         }, 180);
       }, remaining);
     };
 
     const prepare = async () => {
       const imageProgress = Promise.all(
-        criticalImages.map((src, index) =>
+        criticalImages.map((src) =>
           loadImage(src).then(() => {
-            if (!cancelled) {
-              setProgress(
-                Math.round(((index + 1) / criticalImages.length) * 80),
-              );
-            }
+            if (cancelled || finished) return;
+
+            loadedImages += 1;
+
+            setProgress((current) =>
+              Math.max(
+                current,
+                Math.round(
+                  (loadedImages / criticalImages.length) * 80,
+                ),
+              ),
+            );
           }),
         ),
       );
 
       const fontProgress = document.fonts?.ready.then(() => {
-        if (!cancelled) setProgress((current) => Math.max(current, 92));
+        if (!cancelled && !finished) {
+          setProgress((current) => Math.max(current, 92));
+        }
       });
 
       await Promise.all([imageProgress, fontProgress]);
+
       finish();
     };
 
-    const timeout = window.setTimeout(finish, maximumDisplayTime);
-    void prepare().finally(() => window.clearTimeout(timeout));
+    schedule(finish, maximumDisplayTime);
+
+    void prepare();
 
     return () => {
       cancelled = true;
-      window.clearTimeout(timeout);
+      timers.forEach((timer) => window.clearTimeout(timer));
     };
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isVisible ? "hidden" : "";
+    if (!isVisible) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
     };
   }, [isVisible]);
 
@@ -96,7 +126,9 @@ export default function LoadingScreen() {
     >
       <div className="w-[min(76vw,280px)] text-center">
         <p className="font-serif text-5xl tracking-[0.18em]">燈灯</p>
-        <p className="mt-3 text-[10px] tracking-[0.28em]">KEYAKI FESTIVAL</p>
+        <p className="mt-3 text-[10px] tracking-[0.28em]">
+          KEYAKI FESTIVAL
+        </p>
         <div className="mt-12 h-px w-full bg-white/30">
           <div
             className="h-full bg-white transition-[width] duration-300 ease-out"

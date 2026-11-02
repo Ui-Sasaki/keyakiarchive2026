@@ -1,8 +1,7 @@
 import { TopTitle, Text } from "@/components/texts";
 import { Suspense } from "react";
-import { SiteInfo } from "@prisma/client";
 
-export default function PRVideo({ info: _info }: { info: SiteInfo }) {
+export default function PRVideo(){
   return (
     <div className="pt-16 pb-12 mx-10">
       <TopTitle subtitle="Video">PR動画</TopTitle>

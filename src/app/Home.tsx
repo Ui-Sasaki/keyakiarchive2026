@@ -1,14 +1,14 @@
+
 import "./home.css";
 import { Navigation } from "./_home";
-import { lazy } from "react";
 import dynamic from "next/dynamic";
 import Title from "./_home/Title";
 import Information from "./_home/Informations";
 import News from "./_home/News";
-import LoadingScreen from "../components/LoadingScreen";
+import PageTop from "./_home/PageTop";
+import LoadingScreen from "../components/ClientLoadingScreen";
 
 const Footer = dynamic(() => import("../components/Footer"));
-const PageTop = lazy(() => import("./_home/PageTop"));
 
 export default function App() {
   return (

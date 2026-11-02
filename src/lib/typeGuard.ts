@@ -1,4 +1,4 @@
-import { getObjectKeys } from "@/lib/converter";
+
 import { type URLString } from "@/lib/types";
 
 /**
@@ -14,7 +14,8 @@ export const isArrayOfFiles = (arg: unknown): arg is File[] => {
 
 /**
  * Fileかどうかを判定する
- * Node.jsにFile型は存在しないため、File型が持つプロパティを持っているかどうかで判定する
+ * Node.jsにFile型は存在しない場合があるため、
+ * File型が持つプロパティをもとに判定する
  * @param arg 任意の値
  */
 export const isFileOnNode = (arg: unknown): arg is File =>
@@ -60,19 +61,14 @@ export const isEnclosedInParentheses = (string: string) =>
 
 /**
  * 連想配列をもとに、そのキーの型ガードを作成する
- * @example
- * ```ts
- * const isKey = generateKeyGuard({ key1: "value1", key2: "value2" } as const);
- * const code = getCode();
- * if (isKey(code)) {
- *  // この中でcodeはkey1 | key2型であることが保証される
- * }
- * ```
  * @param obj 連想配列
  */
 export const generateKeyGuard = <T extends string | number>(
   obj: Record<T, string | number>,
 ) => {
-  const keySet = new Set(getObjectKeys(obj));
-  return (arg: unknown): arg is T => keySet.has(arg as T);
+  const keySet = new Set<string>(Object.keys(obj));
+
+  return (arg: unknown): arg is T =>
+    (typeof arg === "string" || typeof arg === "number") &&
+    keySet.has(String(arg));
 };
