@@ -80,7 +80,6 @@ import Photo77 from "../../../public/sales/77.webp";
 import Photo78 from "../../../public/sales/78.webp";
 
 import { LuMapPin } from "react-icons/lu";
-import { ca } from "zod/v4/locales";
 
 interface Product {
   id: string;
