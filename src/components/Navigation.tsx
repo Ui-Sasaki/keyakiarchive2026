@@ -32,7 +32,6 @@ function NavigationInside({ absolute: _ }: { absolute?: boolean }) {
     { text: "トップ", href: "/" },
     { text: "団体", href: "/group" },
     { text: "販売", href: "/sales" },
-    { text: "プレゼン検索", href: "/presentation" },
     { text: "タイムテーブル", href: "/table" },
     { text: "校内マップ", href: "/map" },
     { text: "ご来校の方へ", href: "/forVisiters", changeColor: true },

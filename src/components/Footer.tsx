@@ -38,12 +38,6 @@ function Footer() {
                 販売
               </Link>
               <Link
-                href="/presentation"
-                className="text-[13px] leading-none text-white"
-              >
-                プレゼン検索
-              </Link>
-              <Link
                 href="/table"
                 className="text-[13px] leading-none text-white"
               >
@@ -168,9 +162,6 @@ function Footer() {
           </Link>
           <Link href="/sales" className="text-[13px] text-white hover:underline">
             販売
-          </Link>
-          <Link href="/presentation" className="text-[13px] text-white hover:underline">
-            プレゼン検索
           </Link>
           <Link href="/table" className="text-[13px] text-white hover:underline">
             タイムテーブル

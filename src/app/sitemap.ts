@@ -27,12 +27,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "always",
       priority: 0.8,
     },
-     {
-      url: `${SITE_URL}/presentation`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 0.7,
-    },
     {
       url: `${SITE_URL}/forVisiters`,
       lastModified: new Date(),
